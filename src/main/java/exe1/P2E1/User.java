@@ -29,4 +29,10 @@ public class User {
 		}
 	}
 	
+	public void searchAProduct(String nome, String typeOfProduct) {
+		if(BancoDeDadosProdutos.getInstance().posicaoNaLista(nome) != -1) {
+			
+		}
+	}
+	
 }
