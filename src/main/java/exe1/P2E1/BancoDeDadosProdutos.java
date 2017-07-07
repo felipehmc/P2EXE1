@@ -9,11 +9,14 @@ public class BancoDeDadosProdutos {
 	ArrayList<String> listaNomes;
 	ArrayList<String> tiposDeMercadorias;
 	ArrayList<String> listaDescricoes;
+	ArrayList<Product> produtos;
 	
 	private BancoDeDadosProdutos() {
 		listaPrecos = new ArrayList<Double>();
 		listaNomes = new ArrayList<String>();
 		tiposDeMercadorias = new ArrayList<String>();
+		listaDescricoes = new ArrayList<String>();
+		produtos = new ArrayList<Product>();
 	}
 	
 	public static BancoDeDadosProdutos getInstance(){
@@ -25,11 +28,12 @@ public class BancoDeDadosProdutos {
 	
 	public void adicionaMercadoria(String nome, double preco, String descricao, 
 			String tipoDeMercadoria){
-		if(posicaoNaLista(nome) != -1) {
+		if(posicaoNaLista(nome) == -1) {
 			listaNomes.add(nome);
 			listaPrecos.add(preco);
 			listaDescricoes.add(descricao);
 			tiposDeMercadorias.add(tipoDeMercadoria);
+			geraProduto(posicaoNaLista(nome));
 		}
 	}
 
@@ -42,9 +46,11 @@ public class BancoDeDadosProdutos {
 		return -1;
 	}
 	
-	public Product geraProduto(int indice) {
-		if(tiposDeMercadorias.equals("book")) {
-			return geraLivro(indice);
+	private Product geraProduto(int indice) {
+		if(tiposDeMercadorias.get(indice).equals("book")) {
+			Product p = geraLivro(indice);
+			produtos.add(p);
+			return p;
 		}
 		return null;
 	}
@@ -55,6 +61,26 @@ public class BancoDeDadosProdutos {
 		String descricao = listaDescricoes.get(indice);
 		Product newProduct = new Book(nome, preco, descricao);
 		return newProduct;
+	}
+	
+	public String retornaDescricao(int indice) {
+		try {
+			String descricao = "Nome: " + listaNomes.get(indice) + "\nTipo de produto: " + 
+					tiposDeMercadorias.get(indice) + "\nPreço: " + listaNomes.get(indice) + "\nDescricao: " +
+					listaDescricoes.get(indice) + "\nAvaliacao dos clientes: " + produtos.get(indice).getNota()
+					+ "\nNumero de avaliacoes: " + produtos.get(indice).getNumberOfRates();
+					return descricao;
+		} catch (Exception e) {
+		}
+		return null;
+	}
+	
+	public void atualizaAvaliacaoDoProduto(int indice, double nota) {
+		if(produtos.size() >= indice) {
+			produtos.get(indice).setNota(nota);
+			System.out.println("Nota dos clientes: " + produtos.get(indice).getNota());
+			System.out.println("Numero de avaliacoes: " + produtos.get(indice).getNumberOfRates());
+		}
 	}
 	
 	

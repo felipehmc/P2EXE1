@@ -30,6 +30,10 @@ public abstract class Product {
 		}
 	}
 	
+	public int getNumberOfRates() {
+		return numberOfRates;
+	}
+	
 	public abstract void printInformation();
 	
 }

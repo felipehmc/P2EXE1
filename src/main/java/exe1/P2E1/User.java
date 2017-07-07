@@ -8,15 +8,26 @@ public class User {
 	private ArrayList<Product> productsBought = new ArrayList<Product>();
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	
-	public void rateAProduct(Product p, double nota) {
-		if(productsBought.contains(p))
-			p.setNota(nota);
+	public void rateAProduct(String produto, double nota) {
+		int posicao = BancoDeDadosProdutos.getInstance().posicaoNaLista(produto);
+		if(posicao != -1) {
+			BancoDeDadosProdutos.getInstance().atualizaAvaliacaoDoProduto(posicao, nota);
+		}
 	}
 	
 	public void buyAProduct(Product p) {
 		Order order = new Order(p);
 		orders.add(order);
 		productsBought.add(p);
+	}
+	
+	public void buyAProduct(String produto) {
+		int posicao = BancoDeDadosProdutos.getInstance().posicaoNaLista(produto);
+		if(posicao != -1) {
+			//Product p = BancoDeDadosProdutos.getInstance().
+			//Order order = new Order()
+		}
+		else System.out.println("Nao temos tal produto");
 	}
 	
 	public void addProductWanted(Product p) {
@@ -29,10 +40,13 @@ public class User {
 		}
 	}
 	
-	public void searchAProduct(String nome, String typeOfProduct) {
-		if(BancoDeDadosProdutos.getInstance().posicaoNaLista(nome) != -1) {
-			
+	public void searchAProduct(String nome) {
+		int posicao = BancoDeDadosProdutos.getInstance().posicaoNaLista(nome);
+		if(posicao != -1) {
+			String descricao = BancoDeDadosProdutos.getInstance().retornaDescricao(posicao);
+			System.out.println(descricao);
 		}
+		else System.out.println("Nao temos tal produto");
 	}
 	
 }

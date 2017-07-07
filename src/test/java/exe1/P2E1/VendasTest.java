@@ -21,7 +21,7 @@ public class VendasTest {
 				+ "\nsapos, unicórnios, dragões e gigantes, não é, entretanto, apenas um passatempo.";
 		BD = BancoDeDadosProdutos.getInstance();
 		BD.adicionaMercadoria("Alice no pais das maravilhas", 23.50, "Alice eh uma menina que se perde e...", "book");
-		BD.adicionaMercadoria("Harry Potter", 8.90, harryPotterDescription, "book");
+		BD.adicionaMercadoria("Harry Potter", 8.90, "Harry eh...", "book");
 		BD.adicionaMercadoria("Jogos Vorazes", 17.40, "Katniss eh uma dolescente...", "book");
 		BD.adicionaMercadoria("Game Of Thrones", 26.70, "O livro conta a historia de ...", "book");
 		BD.adicionaMercadoria("As Vantagens de Ser Invisivel", 7.60, "O livro fala...", "book");
@@ -32,7 +32,7 @@ public class VendasTest {
 	
 	@Test
 	public void test() {
-		
+		User u = new User();
 	}
 	
 }
