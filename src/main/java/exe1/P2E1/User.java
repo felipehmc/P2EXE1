@@ -24,8 +24,7 @@ public class User {
 	public void buyAProduct(String produto) {
 		int posicao = BancoDeDadosProdutos.getInstance().posicaoNaLista(produto);
 		if(posicao != -1) {
-			//Product p = BancoDeDadosProdutos.getInstance().
-			//Order order = new Order()
+			
 		}
 		else System.out.println("Nao temos tal produto");
 	}
